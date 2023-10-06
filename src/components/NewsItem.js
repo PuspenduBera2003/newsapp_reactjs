@@ -16,7 +16,9 @@ export default class NewsItem extends Component {
             <div className={`card bg-${theme}`} style={{ width: '20rem', margin: 'auto' }}>
                 <img src={imageURL} className="card-img-top" alt={imageALT} />
                 <div className="card-body">
-                    <span className={`badge bg-danger position-absolute start-100 top-0 translate-middle rounded-pill p-2`}>{!source ? 'TadkaNews.com' : source}</span>
+                    <div style={{display:'flex', justifyContent:'flex-end'}}>
+                        <span className={`badge bg-danger position-absolute top-0 p-2`} style={{right:'0px'}}>{!source ? 'TadkaNews.com' : source}</span>
+                    </div>
                     <h5 className={`card-title text-${theme === 'light' ? 'dark' : 'light'}`}>{title}</h5>
                     <p className={`card-text text-${theme === 'light' ? 'dark' : 'light'}`}>{description}</p>
                     <p className="card-text"><small style={{ color: authorColor() }}>By {!author ? 'TadkaNews' : author} on {date}</small></p>

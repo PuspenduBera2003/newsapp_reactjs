@@ -3,7 +3,7 @@ import React, { Component } from 'react'
 export default class Spinner extends Component {
     render() {
         return (
-            <div className='d-flex align-items-center justify-content-center my-lg-3'>
+            <div className='d-flex align-items-center justify-content-center my-lg-5'>
                 <div className="spinner-border" style={{ width: '3rem', height: '3rem' }} role="status">
                     <span className="visually-hidden">Loading...</span>
                 </div>
