@@ -30,7 +30,7 @@ const News = (props) => {
     }
 
     useEffect(() => {
-        document.title = `${capitalizeFirstLetter(props.category)} - NewsMonkey`;
+        document.title = `${capitalizeFirstLetter(props.category)} - TadkaNews`;
         updateNews();
         // eslint-disable-next-line
     }, [props.category])
@@ -52,7 +52,7 @@ const News = (props) => {
                 <InfiniteScroll
                     dataLength={articles.length}
                     next={fetchMoreData}
-                    hasMore={articles.length !== totalResults}
+                    hasMore={articles.length < totalResults}
                     loader={<Spinner />}
                 >
                     <div className="container mb-3">

@@ -4,6 +4,7 @@ import React, { useState } from 'react'
 import Navbar from './components/Navbar';
 import News from './components/News';
 import LoadingBar from 'react-top-loading-bar'
+import Devdetails from './components/Devdetails';
 
 const App = () => {
   const[theme, setTheme] = useState('light');
@@ -63,6 +64,10 @@ const App = () => {
           <Route
             exact path="/technology"
             element={<News progressNow={progressNow} apiKey={apiKey} category="technology" headlineTitle="Top Technology Headlines" theme={theme} />}
+          />
+          <Route
+            exact path="/dev-details"
+            element={<Devdetails progressNow={progressNow} theme={theme} developerName="Puspendu Bera" />}
           />
         </Routes>
       </div>

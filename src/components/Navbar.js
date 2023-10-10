@@ -1,9 +1,11 @@
 import React from 'react';
-import { Link } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
+import './Navbar.css'
 
 const Navbar = (props) => {
         let invertFilterValue = null;
         let navTogglerBorder = null;
+        const location = useLocation();
         if(props.theme==='dark') {
             invertFilterValue = 'invert(1)';
             navTogglerBorder = '0.5px solid white'
@@ -18,25 +20,28 @@ const Navbar = (props) => {
                     <div className="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul className={"navbar-nav me-auto mb-2 mb-lg-0"}>
                             <li className="nav-item">
-                                <Link className={`nav-link text-${props.theme==='light'?'dark':'light'}`} to="/">Home</Link>
+                                <Link className={`nav-link text-${props.theme==='light'?'dark':'light'} ${location.pathname === '/' ? 'active' : ''}`} to="/">Home</Link>
                             </li>
                             <li className="nav-item">
-                                <Link className={`nav-link text-${props.theme==='light'?'dark':'light'}`} to="/business">Business</Link>
+                                <Link className={`nav-link text-${props.theme==='light'?'dark':'light'} ${location.pathname === '/business' ? 'active' : ''}`} to="/business">Business</Link>
                             </li>
                             <li className="nav-item">
-                                <Link className={`nav-link text-${props.theme==='light'?'dark':'light'}`} to="/entertainment">Entertainment</Link>
+                                <Link className={`nav-link text-${props.theme==='light'?'dark':'light'} ${location.pathname === '/entertainment' ? 'active' : ''}`} to="/entertainment">Entertainment</Link>
                             </li>
                             <li className="nav-item">
-                                <Link className={`nav-link text-${props.theme==='light'?'dark':'light'}`} to="/health">Health</Link>
+                                <Link className={`nav-link text-${props.theme==='light'?'dark':'light'} ${location.pathname === '/health' ? 'active' : ''}`} to="/health">Health</Link>
                             </li>
                             <li className="nav-item">
-                                <Link className={`nav-link text-${props.theme==='light'?'dark':'light'}`} to="/science">Science</Link>
+                                <Link className={`nav-link text-${props.theme==='light'?'dark':'light'} ${location.pathname === '/science' ? 'active' : ''}`} to="/science">Science</Link>
                             </li>
                             <li className="nav-item">
-                                <Link className={`nav-link text-${props.theme==='light'?'dark':'light'}`} to="/sports">Sports</Link>
+                                <Link className={`nav-link text-${props.theme==='light'?'dark':'light'} ${location.pathname === '/sports' ? 'active' : ''}`} to="/sports">Sports</Link>
                             </li>
                             <li className="nav-item">
-                                <Link className={`nav-link text-${props.theme==='light'?'dark':'light'}`} to="/technology">Technology</Link>
+                                <Link className={`nav-link text-${props.theme==='light'?'dark':'light'} ${location.pathname === '/technology' ? 'active' : ''}`} to="/technology">Technology</Link>
+                            </li>
+                            <li className="nav-item">
+                                <Link className={`nav-link text-${props.theme==='light'?'dark':'light'} ${location.pathname === '/dev-details' ? 'active' : ''}`} to="/dev-details">Developer Details</Link>
                             </li>
                         </ul>
                         <span className={`btn btn-outline-${props.theme === 'light' ? 'dark' : 'light'} material-symbols-outlined`} onClick={props.toggleTheme} style={{ position: 'relative', top: '0px' }}>
