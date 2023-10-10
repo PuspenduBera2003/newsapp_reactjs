@@ -9,6 +9,8 @@ import Devdetails from './components/Devdetails';
 const App = () => {
   const[theme, setTheme] = useState('light');
   const[progress, setProgress] = useState(0);
+  const [selectedCountry, setSelectedCountry] = useState('in');
+  const [selectedCountryFull, setSelectedCountryFull] = useState('India');
   const toggleTheme = () => {
     if (theme === 'light') {
       setTheme('dark');
@@ -26,6 +28,11 @@ const App = () => {
     setProgress(progress);
   }
 
+  const handleCountryChange = (newCountry, newCountryFull) => {
+    setSelectedCountry(newCountry);
+    setSelectedCountryFull(newCountryFull);
+  };
+
   const apiKey = process.env.REACT_APP_NEWS_API2;
   return (
     <Router>
@@ -35,35 +42,35 @@ const App = () => {
           progress={progress}
           height={3.5}
         />
-        <Navbar theme={theme} toggleTheme={toggleTheme} />
+        <Navbar theme={theme} toggleTheme={toggleTheme} onCountryChange={handleCountryChange} />
         <Routes>
           <Route
             exact path="/"
-            element={<News progressNow={progressNow} apiKey={apiKey} category="general" theme={theme} />}
+            element={<News countryShort={selectedCountry} countryFull={selectedCountryFull} progressNow={progressNow} apiKey={apiKey} category="general" theme={theme} />}
           />
           <Route
             exact path="/business"
-            element={<News progressNow={progressNow} apiKey={apiKey} category="business" headlineTitle="Top Business Headlines" theme={theme} />}
+            element={<News countryShort={selectedCountry} countryFull={selectedCountryFull} progressNow={progressNow} apiKey={apiKey} category="business" theme={theme} />}
           />
           <Route
             exact path="/entertainment"
-            element={<News progressNow={progressNow} apiKey={apiKey} category="entertainment" headlineTitle="Top Entertainment Headlines" theme={theme} />}
+            element={<News countryShort={selectedCountry} countryFull={selectedCountryFull} progressNow={progressNow} apiKey={apiKey} category="entertainment" theme={theme} />}
           />
           <Route
             exact path="/health"
-            element={<News progressNow={progressNow} apiKey={apiKey} category="health" headlineTitle="Top Health Headlines" theme={theme} />}
+            element={<News countryShort={selectedCountry} countryFull={selectedCountryFull} progressNow={progressNow} apiKey={apiKey} category="health" theme={theme} />}
           />
           <Route
             exact path="/science"
-            element={<News progressNow={progressNow} apiKey={apiKey} category="science" headlineTitle="Top Science Headlines" theme={theme} />}
+            element={<News countryShort={selectedCountry} countryFull={selectedCountryFull} progressNow={progressNow} apiKey={apiKey} category="science" theme={theme} />}
           />
           <Route
             exact path="/sports"
-            element={<News progressNow={progressNow} apiKey={apiKey} category="sports" headlineTitle="Top Sports Headlines" theme={theme} />}
+            element={<News countryShort={selectedCountry} countryFull={selectedCountryFull} progressNow={progressNow} apiKey={apiKey} category="sports" theme={theme} />}
           />
           <Route
             exact path="/technology"
-            element={<News progressNow={progressNow} apiKey={apiKey} category="technology" headlineTitle="Top Technology Headlines" theme={theme} />}
+            element={<News countryShort={selectedCountry} countryFull={selectedCountryFull} progressNow={progressNow} apiKey={apiKey} category="technology" theme={theme} />}
           />
           <Route
             exact path="/dev-details"

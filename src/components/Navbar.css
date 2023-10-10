@@ -2,3 +2,13 @@
     font-weight: bolder !important;
     font-style: italic;
 }
+
+.dropdown-dark:hover {
+    background-color: #121416;
+    cursor: pointer;
+}
+
+.dropdown-light:hover {
+    background-color: rgb(209, 209, 209);
+    cursor: pointer;
+}

@@ -17,7 +17,7 @@ const News = (props) => {
 
     const updateNews = async () => {
         props.progressNow(10);
-        const url = `https://newsapi.org/v2/top-headlines?country=${props.country}&category=${props.category}&apiKey=${props.apiKey}&page=${page}&pageSize=${props.pageSize}`;
+        const url = `https://newsapi.org/v2/top-headlines?country=${props.countryShort}&category=${props.category}&apiKey=${props.apiKey}&page=${page}&pageSize=${props.pageSize}`;
         setLoading(true)
         let data = await fetch(url);
         props.progressNow(30);
@@ -30,14 +30,14 @@ const News = (props) => {
     }
 
     useEffect(() => {
-        document.title = `${capitalizeFirstLetter(props.category)} - TadkaNews`;
+        document.title = `${capitalizeFirstLetter(props.category)} News - TadkaNews ${props.countryFull}`;
         updateNews();
         // eslint-disable-next-line
-    }, [props.category])
+    }, [props.category, props.countryShort])
 
 
     const fetchMoreData = async () => {
-        const url = `https://newsapi.org/v2/top-headlines?country=${props.country}&category=${props.category}&apiKey=${props.apiKey}&page=${page + 1}&pageSize=${props.pageSize}`;
+        const url = `https://newsapi.org/v2/top-headlines?country=${props.countryShort}&category=${props.category}&apiKey=${props.apiKey}&page=${page + 1}&pageSize=${props.pageSize}`;
         setPage(page + 1)
         let data = await fetch(url);
         let parsedData = await data.json()
@@ -47,7 +47,7 @@ const News = (props) => {
 
     return (
         <>
-            <h1 className="text-center my-5">TadkaNews - Top {capitalizeFirstLetter(props.category)} Headlines</h1>
+            <h1 className="text-center my-5">TadkaNews - Top {capitalizeFirstLetter(props.category)} Headlines ({props.countryFull})</h1>
             {loading ? <Spinner /> :
                 <InfiniteScroll
                     dataLength={articles.length}
