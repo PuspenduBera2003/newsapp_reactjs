@@ -44,7 +44,7 @@ const Navbar = (props) => {
                             <Link className={`nav-link text-${props.theme === 'light' ? 'dark' : 'light'} ${location.pathname === '/dev-details' ? 'active' : ''}`} to="/dev-details">Developer Details</Link>
                         </li>
                     </ul>
-                    <div className="dropdown me-4">
+                    {location.pathname !== '/dev-details' && <div className="dropdown me-4">
                         <a className={`btn btn-secondary dropdown-toggle bg-${props.theme} text-${props.theme === 'light' ? 'dark' : 'light'}`} href="/" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             Select Country
                         </a>
@@ -72,6 +72,7 @@ const Navbar = (props) => {
                             </li>
                         </ul>
                     </div>
+                    }
                     <span className={`btn btn-outline-${props.theme === 'light' ? 'dark' : 'light'} material-symbols-outlined`} onClick={props.toggleTheme} style={{ position: 'relative', top: '0px' }}>
                         {props.theme === 'light' ? 'dark' : 'light'}_mode
                     </span>

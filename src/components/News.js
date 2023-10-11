@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react'
 
 import NewsItem from './NewsItem'
-import Spinner from './Spinner';
 import PropTypes from 'prop-types'
 import InfiniteScroll from "react-infinite-scroll-component";
+import Skeleton from 'react-loading-skeleton'
+import 'react-loading-skeleton/dist/skeleton.css'
 
 const News = (props) => {
     const [articles, setArticles] = useState([])
@@ -45,15 +46,35 @@ const News = (props) => {
         setTotalResults(parsedData.totalResults)
     };
 
+    function skeletonLoaderBaseColor() {
+        if (props.theme === 'light') {
+            return '#ebebeb'
+        }
+        else {
+            return '#212121'
+        }
+    }
+
+    function skeletonLoaderHighlightColor() {
+        if (props.theme === 'light') {
+            return '#f5f5f5'
+        }
+        else {
+            return '#3d3d3d'
+        }
+    }
+
     return (
         <>
             <h1 className="text-center my-5">TadkaNews - Top {capitalizeFirstLetter(props.category)} Headlines ({props.countryFull})</h1>
-            {loading ? <Spinner /> :
+            {loading ? <Skeleton count={6} width={300} height={250} inline={true} borderRadius={10} baseColor={skeletonLoaderBaseColor()} highlightColor={skeletonLoaderHighlightColor()} style={{margin: '3.7rem', marginTop:'0'}} />  :
                 <InfiniteScroll
                     dataLength={articles.length}
                     next={fetchMoreData}
                     hasMore={articles.length < totalResults}
-                    loader={<Spinner />}
+                    loader={
+                        <Skeleton count={6} width={300} height={250} inline={true} borderRadius={10} baseColor={skeletonLoaderBaseColor()} highlightColor={skeletonLoaderHighlightColor()} style={{margin: '3.7rem', marginTop:'0'}} /> 
+                    }
                 >
                     <div className="container mb-3">
                         <div className="row">
